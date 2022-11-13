@@ -58,8 +58,7 @@ app.use('/uploads',express.static('uploads'));
 
 app.post('/auth/login',loginValidation,handleValidationErros, UserController.login )
 
-app.post('/auth/register',registerValidation,handleValidationErros, UserController.register
-);
+app.post('/auth/register',registerValidation,handleValidationErros, UserController.register);
 
 app.get('/auth/me', checkAuth,UserController.getMe);
 

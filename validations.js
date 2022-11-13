@@ -4,7 +4,7 @@ export const registerValidation = [
     body('email','Неверный формат поты').isEmail(),
     body('password', 'Пароль минимум 5 символов').isLength({min:5}),
     body('fullName','Имя минимум 3 символа').isLength({min:3}),
-    body('avatarUrl','Невернная ссылка на аватарку').optional().isURL(),
+    body('avatarUrl','Невернная ссылка на аватарку').optional().isString(),
 ]
 
 

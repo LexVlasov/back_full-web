@@ -13,8 +13,8 @@ export const register = async(req,res) => {
 ;
     const doc = new UserModel({
         email:req.body.email,
-        fullName: req.body.fullName,
-        avatartUrl: req.body.avatartUrl,
+        fullName:req.body.fullName,
+        avatarUrl:req.body.avatarUrl,
         passwordHash: hash,
     });
 
@@ -26,11 +26,14 @@ export const register = async(req,res) => {
     {
         expiresIn:'30d'
     });
+    console.log(user._doc);
     const { passwordHash, ...userData }= user._doc;
     res.json({...userData
-        ,token,});
+        ,token});
     } catch (err) {
-        console.log(err);
+        console.log(err.response);
+      console.log(err.request);
+      console.log(err.message);
         res.status(500).json({
             message:'не удалось зарегстрироваться'});
     }};

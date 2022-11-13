@@ -132,7 +132,7 @@ export const getPostByTag = async (req,res) =>{
         const tag = req.params.tag;
         const posts = await PostModel.find({
             tags:tag
-        }).exec();
+        }).populate('user').exec();
         res.json(posts);
     }catch(err){
         console.log(err);
