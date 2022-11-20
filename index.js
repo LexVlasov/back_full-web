@@ -5,7 +5,7 @@ import fs from 'fs';
 import cors from 'cors';
 import {registerValidation,loginValidation,postCreateValidation} from './validations.js';
 
-import {UserController,PostController} from './controllers/index.js';
+import {UserController,PostController, CommentController} from './controllers/index.js';
 import {handleValidationErros,checkAuth} from './utils/index.js';
 
 mongoose.connect(
@@ -81,7 +81,9 @@ app.post('/posts',checkAuth, postCreateValidation, PostController.create);
 app.delete('/posts/:id', checkAuth, PostController.remove);
 app.patch('/posts/:id', PostController.update);
 app.get('/tags/:tag',PostController.getPostByTag);
-
+app.post('/posts/:id/comment',checkAuth, CommentController.createComment);
+app.get('/posts/:id/comment',CommentController.getComment);
+app.get('/comment',CommentController.getLastComment);
 app.listen(
     process.env.PORT || 
     4444,(err)=> {
