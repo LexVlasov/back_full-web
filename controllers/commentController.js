@@ -33,13 +33,10 @@ export const getComment = async (req,res)=>{
     }
 };
 
-
 export const getLastComment =async (req,res)=>{
     try{
         const posts = await PostModel.find().sort({viewsCount:'desc'}).limit(5).exec();
         const postId = posts.map(obj => obj._id).flat().slice(0,5);
-        console.log('posts',posts);
-        console.log('postId',postId);
         const comment = await CommentModel.find({
             post:postId
         }).populate('user').exec();
