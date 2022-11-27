@@ -81,6 +81,7 @@ app.post('/posts',checkAuth, postCreateValidation, PostController.create);
 app.delete('/posts/:id', checkAuth, PostController.remove);
 app.patch('/posts/:id', PostController.update);
 app.get('/tags/:tag',PostController.getPostByTag);
+app.get('/popular',PostController.getPopularPost);
 app.post('/posts/:id/comment',checkAuth, CommentController.createComment);
 app.get('/posts/:id/comment',CommentController.getComment);
 app.get('/comment',CommentController.getLastComment);

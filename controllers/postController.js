@@ -141,3 +141,15 @@ export const getPostByTag = async (req,res) =>{
             message:'Не удалось получить статьи по тэгам'});
     }
 }
+
+export const getPopularPost =async (req,res)=>{
+    try{
+        const posts = await PostModel.find().populate('user').sort({viewsCount:'desc'}).limit(5).exec();
+
+        res.json(posts)
+    }catch(err){
+        console.log(err);
+        res.status(500).json({
+            message:'Не удалось получить статьи'});
+    }
+}
