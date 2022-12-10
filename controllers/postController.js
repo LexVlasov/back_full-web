@@ -153,3 +153,17 @@ export const getPopularPost =async (req,res)=>{
             message:'Не удалось получить статьи'});
     }
 }
+
+export const getPostByUser = async (req,res) =>{
+    try{
+        const userId = req.params.id;
+        const posts = await PostModel.find({
+            user:userId
+        }).populate('user').exec();
+        res.json(posts);
+    }catch(err){
+        console.log(err);
+        res.status(500).json({
+            message:'Не удалось получить статьи по тэгам'});
+    }
+}

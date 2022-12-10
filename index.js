@@ -85,6 +85,8 @@ app.get('/popular',PostController.getPopularPost);
 app.post('/posts/:id/comment',checkAuth, CommentController.createComment);
 app.get('/posts/:id/comment',CommentController.getComment);
 app.get('/comment',CommentController.getLastComment);
+app.get('/account/posts/:id',PostController.getPostByUser);
+app.get('/account/:id',UserController.getAccount);
 app.listen(
     process.env.PORT || 
     4444,(err)=> {
